@@ -35,3 +35,30 @@ airports.forEach(addNode);
 routes.forEach((route) => addEdge(...route));
 
 console.log(adjacencyList);
+
+//bfs
+
+function bfs(start) {
+  //build a queue for the starting point of the search
+  //from the starting node visit all the children until we find what we are looking for (airports here) continue in layers until found
+
+  // in javascript this is represented as a queue in an array where the first item in is the first item out
+  const queue = [start];
+  //avoid visiting the same nodes this will keep track with Set . Basically an array with only unique values
+  const visited = new Set();
+  //while it has item grab the first item with shift
+  while (queue.length > 0) {
+    const airport = queue.shift(); //mutates the queue by removing the first item
+    const destinations = adjacencyList.get(airport); //grab all the edges for the node
+    for (const destination of destinations) {
+      if (destination === 'BKK') console.log('Found It');
+      if (!visited.has(destination)) {
+        visited.add(destination);
+        queue.push(destination);
+        console.log(destination);
+      }
+    }
+  }
+}
+
+bfs('PHX');
