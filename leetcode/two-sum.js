@@ -1,4 +1,4 @@
-var twoSum = function (nums, target) {
+const twoSum = (nums, target) => {
   //get the first item find the number you need to get to the target get its index
   let complements = new Map();
   for (let i in nums) {
