@@ -36,7 +36,7 @@ routes.forEach((route) => addEdge(...route));
 
 console.log(adjacencyList);
 
-//bfs
+//bfs good for finding all the routes to determine most efficient
 
 function bfs(start) {
   //build a queue for the starting point of the search
@@ -51,7 +51,7 @@ function bfs(start) {
     const airport = queue.shift(); //mutates the queue by removing the first item
     const destinations = adjacencyList.get(airport); //grab all the edges for the node
     for (const destination of destinations) {
-      if (destination === 'BKK') console.log('Found It');
+      if (destination === 'BKK') console.log('Found It ' + airport + '\n');
       if (!visited.has(destination)) {
         visited.add(destination);
         queue.push(destination);
@@ -63,16 +63,18 @@ function bfs(start) {
 
 bfs('PHX');
 
-function dfs(start, visited = new Set()) {
+function dfs(start, visited = new Set(), steps = 1) {
   visited.add(start);
+  console.log(start);
   const destinations = adjacencyList.get(start);
+  console.log(destinations);
   for (const destination of destinations) {
     if (destination === 'BKK') {
-      console.log(`DFS found Bangkok`);
+      console.log(`DFS found Bangkok in ${steps}`);
       return;
     }
     if (!visited.has(destination)) {
-      dfs(destination, visited);
+      dfs(destination, visited, steps + 1);
     }
   }
 }
