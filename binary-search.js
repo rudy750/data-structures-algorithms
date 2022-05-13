@@ -44,3 +44,25 @@ console.log(binarySearch(nums, 15)); //return false or not found
 //time complexity : O(log(n)) every loop divides the array
 
 //space complexity: O(1) regardless of size of array we never create more so its constant
+
+const binarySearchRecursive = (array, target) => {
+  //since we are not looping there are no left or right markers so we pass them in
+  return binarySearchHelper(array, target, 0, array.length - 1);
+};
+
+const binarySearchHelper = (array, target, left, right) => {
+  if (left > right) {
+    return false;
+  }
+  let mid = Math.floor((left + right) / 2);
+  if (target === array[mid]) {
+    return mid;
+  } else if (target < array[mid]) {
+    return binarySearchHelper(array, target, left, mid - 1);
+  } else {
+    return binarySearchHelper(array, mid, mid + 1, right);
+  }
+};
+
+console.log('recursive: ', binarySearchRecursive(nums, 7));
+console.log('recursive: ', binarySearchHelper(nums, 15));
