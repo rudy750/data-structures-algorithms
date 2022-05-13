@@ -65,4 +65,6 @@ const binarySearchHelper = (array, target, left, right) => {
 };
 
 console.log('recursive: ', binarySearchRecursive(nums, 7));
-console.log('recursive: ', binarySearchHelper(nums, 15));
+console.log('recursive: ', binarySearchRecursive(nums, 15));
+//time ccomplexity  O(log(n))
+//space complexity  O(logn)      larger because of call stacks
