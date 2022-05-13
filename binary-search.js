@@ -68,3 +68,27 @@ console.log('recursive: ', binarySearchRecursive(nums, 7));
 console.log('recursive: ', binarySearchRecursive(nums, 15));
 //time ccomplexity  O(log(n))
 //space complexity  O(logn)      larger because of call stacks
+
+//try a direct call to recursive 💪
+
+const recursiveBinarySearch = (
+  array,
+  target,
+  left = 0,
+  right = array.length - 1
+) => {
+  if (left > right) {
+    return false;
+  }
+  let mid = Math.floor((left + right) / 2);
+  if (target === array[mid]) {
+    return mid;
+  } else if (target < array[mid]) {
+    return binarySearchHelper(array, target, left, mid - 1);
+  } else {
+    return binarySearchHelper(array, mid, mid + 1, right);
+  }
+};
+
+console.log('recursive refactor: ', recursiveBinarySearch(nums, 7));
+console.log('recursive refactor: ', recursiveBinarySearch(nums, 15));
