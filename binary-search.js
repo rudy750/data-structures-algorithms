@@ -1,4 +1,5 @@
 /**
+ * https://www.youtube.com/watch?v=m2QzEG8IqxI
  * one of the quickest way to search a sorted list of items. Similar to how you would look something up in a dictionary. 
 *  Rather than turn every page in the dictionary till you get to the word. You would "divide and conquer" by going to roughly where the word is and 
 then shifting left or right 
@@ -77,16 +78,18 @@ const recursiveBinarySearch = (
   left = 0,
   right = array.length - 1
 ) => {
+  console.log(`left: ${left} right: ${right}`);
   if (left > right) {
+    // we havent found target
     return false;
   }
   let mid = Math.floor((left + right) / 2);
   if (target === array[mid]) {
     return mid;
   } else if (target < array[mid]) {
-    return binarySearchHelper(array, target, left, mid - 1);
+    return recursiveBinarySearch(array, target, left, mid - 1);
   } else {
-    return binarySearchHelper(array, mid, mid + 1, right);
+    return recursiveBinarySearch(array, mid, mid + 1, right);
   }
 };
 
