@@ -23,7 +23,7 @@ const binarySearch = (array, target) => {
   let left = 0; //start at the first element
   let right = array.length - 1; //start at the last element by subtracting 1 from the length
   //we wont check every element and we don't know how many times. keep searching as long as there are things left to search
-  while (left < right) {
+  while (left <= right) {
     //always determine the mid in each iteration
     let mid = Math.floor((left + right) / 2); // we do floor because we dont want decimals
     if (target === array[mid]) {
@@ -52,7 +52,7 @@ const binarySearchRecursive = (array, target) => {
 };
 
 const binarySearchHelper = (array, target, left, right) => {
-  if (left > right) {
+  if (left >= right) {
     return false;
   }
   let mid = Math.floor((left + right) / 2);
